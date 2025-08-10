@@ -13,5 +13,5 @@ This repo contains our official implementation of <strong> DualSpeechLM </strong
 
 ## 📣 News & TODOs
 - [x] **[2025.08.11]** Release paper and project page.
-- [ ] Release USTokenizer code.
-- [ ] Release DualSpeechLM code.
+- [ ] Release USTokenizer code (coming soon).
+- [ ] Release DualSpeechLM code (coming soon).
