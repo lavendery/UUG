@@ -12,6 +12,6 @@
 This repo contains our official implementation of <strong> DualSpeechLM </strong>. For the generated audio, Please refer to [[Demo]](https://lavendery.github.io/Unified-Understanding-and-Generalization-Demo/). You can find our paper from [[Paper]](https).
 
 ## 📣 News & TODOs
-- [x] **[2025.08.11]** Release paper and project page.
+- [x] **[2025.08.12]** Release paper and project page.
 - [ ] Release USTokenizer code (coming soon).
 - [ ] Release DualSpeechLM code (coming soon).
