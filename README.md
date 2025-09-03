@@ -41,7 +41,8 @@ pip install -r requirements.txt
 ### 2. Training the Tokenizer
 (1) Configure your settings in configs/config.yaml.
 
-(2) Prepare the required public checkpoints: 'Llama' and 'Whisper'. 
+(2) Prepare the required public checkpoints: 'Llama' and 'Whisper'.  
+  and modify the 'llama_path' and 'whisper_path' in configs/config.yaml
 
 (3) Create your training/dev/test dataset file meta.json with the following format:
 ```
