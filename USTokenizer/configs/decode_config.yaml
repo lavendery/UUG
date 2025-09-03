@@ -1,0 +1,51 @@
+
+model:
+  llama_path: "path/to/llama_model" # Llama model path
+  end_sym: "<|end_of_text|>" 
+  whisper_path: "path/to/whisper_path/whisper-medium" # whisper model path
+  ckpt: "exp/tokenizer_ckpt/checkpointxxx" # load model from ckpt for evaluation
+  freeze_whisper: True
+
+
+  # LoRA
+  lora: False
+  lora_rank: 8
+  lora_alpha: 32
+  lora_dropout: 0.1
+
+  multi_prompt: True
+  prompt_template: "USER: {}\nASSISTANT:"
+  prompt_path: "prompts/train_prompt.json"
+  test_prompt_path: "prompts/test_prompt.json"
+  max_txt_len: 300
+
+  codec_config:
+    # RepCodec config
+    input_channels: 1024 # for the d_model size of whisper medium
+    output_channels: 1024
+    encode_channels: 1024
+    decode_channels: 1024
+    code_dim: 1024
+    codebook_num: 1
+    codebook_size: 1024
+    bias: true
+    enc_ratios: [ 1, 1 ]
+    dec_ratios: [ 1, 1 ]
+    enc_strides: [ 1, 1 ]  # no downsampling
+    dec_strides: [ 1, 1 ]
+    enc_kernel_size: 3
+    dec_kernel_size: 3
+    enc_block_dilations: [ 1, 1 ]
+    enc_block_kernel_size: 3
+    dec_block_dilations: [ 1, 1 ]
+    dec_block_kernel_size: 3
+
+generate:
+  max_new_tokens: 200
+  num_beams: 4
+  do_sample: False
+  min_length: 1
+  temperature: 1.0
+  top_p: 0.9
+  repetition_penalty: 1.0
+  length_penalty: 1.0
