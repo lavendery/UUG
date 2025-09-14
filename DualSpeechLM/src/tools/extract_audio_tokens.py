@@ -17,9 +17,7 @@ import glob
 import uuid
 import json
 import pickle
-# from src.tokenizer.Hubert_semantic.hubert_tokenizer import HubertTokenizer
 from src.tokenizer.USTokenizer.models.USTokenizer import USTokenizer  
-# from stable_codec import StableCodec
 from src.tokenizer.WavTokenizer.encoder.utils import convert_audio
 import torchaudio
 from src.tokenizer.WavTokenizer.decoder.pretrained import WavTokenizer
@@ -154,12 +152,8 @@ def main(args):
 
             sample = {'audio_ids': tmp_token.view(-1).cpu().tolist(), 'text': content, 'metadata': tmp}
 
-            # only stable codec
-            # sample = {'audio_ids': tmp_token.view(-1).cpu().tolist(), 'text': content, 'metadata': tmp, 'stable_tokenizer': stable_tokens.view(-1).cpu().tolist()}
             # # only wav tokenizer
             # sample = {'audio_ids': tmp_token.view(-1).cpu().tolist(), 'text': content, 'metadata': tmp, 'wav_tokenizer': wavtokenizer_discrete_code.view(-1).cpu().tolist()}
-            # # stable codec + wav tokenizer
-            # sample = {'audio_ids': tmp_token.view(-1).cpu().tolist(), 'text': content, 'metadata': tmp, 'wav_tokenizer': wavtokenizer_discrete_code.view(-1).cpu().tolist(), 'stable_tokenizer': stable_tokens.view(-1).cpu().tolist()}
             sink.write({'__key__': key_str, 'pkl': pickle.dumps(sample)})
 
 if __name__ == "__main__":
