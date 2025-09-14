@@ -1,0 +1,109 @@
+_target_: src.data.torchdata_sft_speech_latest.build_multi_datapipes
+_recursive_: False
+datapipes:
+
+  # ASR
+  - _target_: src.data.torchdata_sft_speech_latest.build_ASR_datapipes_for_llm
+
+    data_dir: data/ASR/LibriSpeech_train/8splits_USToken #USToken for ASR
+
+    target_vocab_size: 4096 # the target vocab size of acoustic tokenizer
+
+    max_length: 2000
+    batch_size: 6
+    reverse_ratio: 0.0
+  
+  # TTS
+  - _target_: src.data.torchdata_sft_speech_latest.build_TTS_datapipes_for_llm
+
+    data_dir: data/TTS/LibriTTS_R_train/8splits_USToken #USToken for TTS  
+    target_vocab_size: 4096 # the target vocab size of acoustic tokenizer
+    train_LibriTTS_R_npy_dir: data/TTS/LibriTTS_R_train/speaker_embedding/embeddings  # speaker embedding for target speaker
+    train_libriheavy_large_npy_dir: data/libriheavy/large/speaker_embedding/embeddings
+
+    max_length: 2000
+    batch_size: 6
+    reverse_ratio: 0.0
+  
+  # VC
+  - _target_: src.data.torchdata_sft_speech_latest.build_VC_datapipes_for_llm
+
+    data_dir: data/VC/train-libriheavy_large/8splits_USToken #USToken for VC 
+    target_vocab_size: 4096
+    train_libriheavy_large_npy_dir: data/libriheavy/large/speaker_embedding/embeddings
+
+    max_length: 2000
+    batch_size: 5
+    reverse_ratio: 0.0
+  
+  # T2ST
+  - _target_: src.data.torchdata_sft_speech_latest.build_T2ST_datapipes_for_llm
+
+    data_dir: data/T2ST/CVSS_fr_en_es_en/8splits_USToken #USToken for T2ST 
+    target_vocab_size: 4096
+    npy_dir: data/T2ST/CVSS_fr_en_es_en/embeddings # speaker embedding for target speaker
+
+    max_length: 2000
+    batch_size: 10
+    reverse_ratio: 0.0
+  
+  # SC task
+  - _target_: src.data.torchdata_sft_speech_latest.build_SC_datapipes_for_llm
+
+    data_dir: data/SC/salmonn_Synthetic/8splits_USToken #USToken for SC
+    target_vocab_size: 4096
+    npy_dir: data/SC/salmonn_Synthetic/speaker_embedding/embeddings # speaker embedding for target speaker
+
+    max_length: 2000
+    batch_size: 4
+    reverse_ratio: 0.0
+  
+  # SQA
+  - _target_: src.data.torchdata_sft_speech_latest.build_SQA_datapipes_for_llm
+
+    data_dir: data/SQA/SQA/8splits_USToken #USToken for SQA
+    target_vocab_size: 4096  
+    
+    max_length: 2000
+    batch_size: 8
+    reverse_ratio: 0.0
+  
+  # S2TT
+  - _target_: src.data.torchdata_sft_speech_latest.build_S2TT_datapipes_for_llm
+
+    data_dir: data/S2TT/CoVoST2_en_de/8splits_USToken #USToken for S2TT
+    target_vocab_size: 4096  
+    
+    max_length: 2000
+    batch_size: 8
+    reverse_ratio: 0.0
+  
+  # SER
+  - _target_: src.data.torchdata_sft_speech_latest.build_SER_datapipes_for_llm
+
+    data_dir: data/SER/IEMOCAP/8splits_USToken #USToken for SER
+    target_vocab_size: 4096
+    
+    max_length: 2000
+    batch_size: 8
+    reverse_ratio: 0.0
+
+concat_type: 'sample'
+sample_weights:
+  - 0.2 # ASR  
+  - 0.2 # TTS  
+  - 0.2 # VC    
+  - 0.2 # T2ST  
+  - 0.1 # SC
+  - 0.2 # SQA 
+  - 0.2 # S2TT 
+  - 0.1 # SER 
+
+
+
+
+
+  
+  
+
+      

@@ -1,0 +1,8 @@
+{
+    "asr": "<Speech><SpeechHere></Speech> Recognize the speech and give me the transcription.",
+    "ser": "<Speech><SpeechHere></Speech> Please describe the emotion of the speaker in this speech. ",
+    "sqa": "<Speech><SpeechHere></Speech> Based on the speech content, provide a text-based answer to the question. The question is: {} ",
+    "zerospeech_recognition": "<Speech><SpeechHere></Speech> Listen the audio, judge whether the audio is mute or not. Answer Yes or No.",
+    "asr_zh": "<Speech><SpeechHere></Speech> 请将语音中的内容写下来。",
+    "asr_de": "<Speech><SpeechHere></Speech> Hören Sie sich die Rede an und schreiben Sie ihren Inhalt auf.",
+}

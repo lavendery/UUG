@@ -1,0 +1,6 @@
+_target_: src.model.peft_model.get_peft_model_with_resize_embedding
+model:
+  _target_: src.model.modeling_phi3.GPTPhi3ForCausalLM.from_pretrained
+  pretrained_model_name_or_path: checkpoint/microsoft/Phi-3.5-mini-instruct
+  torch_dtype: bfloat16
+  _attn_implementation: flash_attention_2 # 加这个配置，使用flash_attention_2; 否则，可以注释掉不使用

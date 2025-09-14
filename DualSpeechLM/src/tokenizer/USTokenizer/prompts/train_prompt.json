@@ -1,0 +1,28 @@
+{
+    "asr": [
+        "<Speech><SpeechHere></Speech> Can you transcribe the speech into a written format?",
+        "<Speech><SpeechHere></Speech> Listen to the speech and write down its content.",
+        "<Speech><SpeechHere></Speech> What is the content of the speech you heard?",
+        "<Speech><SpeechHere></Speech> Please write down the transcription of the speech.",
+        "<Speech><SpeechHere></Speech> Please transcribe the speech into a written format.",
+        "<Speech><SpeechHere></Speech> Write down the content of the speech you heard.",
+        "<Speech><SpeechHere></Speech> Can you write down the transcription of the speech?",
+        "<Speech><SpeechHere></Speech> Put the speech into a written format.",
+        "<Speech><SpeechHere></Speech> Please help me to transcribe the speech into a written format.",
+        "<Speech><SpeechHere></Speech> Recognize the content of the speech you heard.",
+        "<Speech><SpeechHere></Speech> Can you recognize what you heard in the speech?",
+        "<Speech><SpeechHere></Speech> Recognize the speech and write it down in a written format.",
+        "<Speech><SpeechHere></Speech> Listen to the speech and recognize its content.",
+        "<Speech><SpeechHere></Speech> Give me the transcription of the speech you heard.",
+        "<Speech><SpeechHere></Speech> Recognize the speech and give me the transcription."
+    ],
+    "ser": [
+        "<Speech><SpeechHere></Speech> Please describe the emotion of the speaker in this speech. "
+    ],
+    "sqa": [
+        "<Speech><SpeechHere></Speech> Based on the speech content, provide a text-based answer to the question. The question is: {} "
+    ],
+    "zerospeech_recognition": [
+        "<Speech><SpeechHere></Speech> Listen the audio, judge whether the audio is mute or not. Answer Yes or No."
+    ]
+}

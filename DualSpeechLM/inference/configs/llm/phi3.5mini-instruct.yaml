@@ -1,0 +1,7 @@
+_target_: inference.models.model_tools.get_pretrained_phi35mini_instruct_model
+pretrained_model_name_or_path: exp/DualSpeechLM/checkpoint-merged-60000
+
+torch_dtype: bfloat16
+_attn_implementation: flash_attention_2 # Add this configuration and use flash_attention_2; otherwise, you can comment it out and not use it
+low_cpu_mem_usage: True
+use_cache: False

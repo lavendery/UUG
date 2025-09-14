@@ -1,0 +1,32 @@
+_target_: src.model.peft_model.get_peft_model_with_resize_embedding
+model:
+  _target_: src.model.modeling_phi3.GPTPhi3ForCausalLM.from_pretrained
+  pretrained_model_name_or_path: checkpoint/microsoft/Phi-3.5-mini-instruct
+  torch_dtype: bfloat16
+  _attn_implementation: flash_attention_2 # 加这个配置，使用flash_attention_2; 否则，可以注释掉不使用
+peft_config:
+  _target_: peft.LoraConfig
+  _convert_: object
+  r: 16
+  lora_alpha: 32
+  modules_to_save:
+    - embed_tokens
+    - lm_head
+    - input_layernorm
+    - post_attention_layernorm
+    - norm
+    - llama_decoder_proj
+    - lm_decoder
+    - gpt_head
+    - speaker_module
+  target_modules: 
+    - q_proj 
+    - v_proj 
+    - k_proj 
+    - o_proj 
+    - gate_proj 
+    - down_proj 
+    - up_proj
+  task_type: CAUSAL_LM
+  lora_dropout: 0.05
+

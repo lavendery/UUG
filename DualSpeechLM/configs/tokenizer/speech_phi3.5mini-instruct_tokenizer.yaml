@@ -1,0 +1,5 @@
+_target_: src.tokenizer.speech_llama_tokenizer.SpeechLlama3BTokenizer.from_pretrained
+# # for hubert
+# pretrained_model_name_or_path: checkpoint/tokenizer/Phi-3.5-mini-instruct-tokenizer-audio-500
+# for USTokenizer
+pretrained_model_name_or_path: checkpoint/tokenizer/Phi-3.5-mini-instruct-tokenizer-audio-1024

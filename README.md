@@ -24,27 +24,34 @@ Extending pre-trained Large Language Models (LLMs)'s speech understanding or gen
 ## 📣 News & TODOs
 - [x] **[2025.08.12]** Release paper and project page.
 - [x] **[2025.09.03]** Release USTokenizer code.
-- [ ] Release DualSpeechLM code (coming soon).
+- [x] **[2025.09.14]** Release DualSpeechLM code.
 - [ ] Release pretrained weights (coming soon).
 
 
 ## USTokenizer
 ### 1.Installation Environment
 ```
+# Clone repository
 git clone https://github.com/lavendery/UUG.git
+cd USTokenizer
+
+# Create and activate conda environment
 conda create -n USTokenizer python=3.10
 conda activate USTokenizer
 
-cd USTokenizer
+# Install dependencies
 pip install -r requirements.txt
 ```
 ### 2. Training the Tokenizer
 (1) Configure your settings in configs/config.yaml.
 
-(2) Prepare the required public checkpoints: 'Llama' and 'Whisper'.  
-  and modify the 'llama_path' and 'whisper_path' in configs/config.yaml
+(2) Prepare the required public checkpoints: `Llama` and `Whisper`.  
+For example, you can download [whisper-medium](https://huggingface.co/openai/whisper-medium) and [llama](https://huggingface.co/meta-llama/Llama-3.2-3B).
+After that, you need to modify the `llama_path` and `whisper_path` in configs/config.yaml
 
-(3) Create your training/dev/test dataset file meta.json with the following format:
+(3) **Prepare Training/Dev/Test Dataset**
+
+Create your training/dev/test dataset file meta.json with the following format:
 ```
 {
     "annotation": [
@@ -57,16 +64,90 @@ pip install -r requirements.txt
     ]
 }
 ```
-(4) Training Command:
+(4) **Run Train**
 ```
 cd USTokenizer
 bash run.sh
 ```
 
-### Inference/Generating Discrete Code (USToken)
+### 3. Inference/Generating Discrete Code (USToken)
 To generate discrete codes using the trained tokenizer:
 ```
 bash infer.sh
+```
+
+## DualSpeechLM
+### 1. Installation Environment
+```
+# Clone repository
+git clone https://github.com/lavendery/UUG.git
+cd DualSpeechLM
+
+# Create and activate conda environment
+conda create -n DualSpeechLM python=3.8
+conda activate DualSpeechLM
+
+# Install dependencies
+pip install -r requirements.txt
+```
+### 2. Training the SpeechLM
+(1) **Prepare Text LLM**
+
+Download [Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct) as the text backbone, and place it in:
+```
+checkpoint/microsoft/Phi-3.5-mini-instruct
+```
+
+(2) **Prepare Tokenizer**
+
+Expand the vocabulary of the text LLM. For example, with USTokenizer, you need to add **1024 new tokens**.
+After that, Place the expanded vocabulary into:
+```
+checkpoint/tokenizer/Phi-3.5-mini-instruct-tokenizer-audio-1024
+```
+
+(3) **Prepare WavTokenizer**
+
+Download [config file](https://github.com/jishengpeng/WavTokenizer/tree/main/configs) and [checkpoint](https://huggingface.co/novateur/WavTokenizer-large-unify-40token) of WavTokenizer, and place them in: 
+```
+WavTokenizer/wavtokenizer_smalldata_frame40_3s_nq1_code4096_dim512_kmeans200_attn.yaml
+WavTokenizer/WavTokenizer-large-unify-40token/wavtokenizer_large_unify_600_24k.ckpt
+```
+
+(4) **Dataset Preparation Example**
+
+The `pre_data.sh` script is provided as an **example for ASR (Automatic Speech Recognition)**.
+It demonstrates how to construct `.tar` files from raw audio and transcription data.
+You need to create `.tar` dataset files based on prepare raw_wav.scp and text.scp:
+```
+bash pre_data.sh
+```
+
+The script ensures that the data format matches the requirements of **DualSpeechLM** training.
+If you want to prepare datasets for other tasks (e.g., TTS, Speech Translation), you can follow the same structure, but adjust the script to handle different input/output modalities accordingly.
+
+(5) **Run Train**
+```
+bash run-multi_task.sh
+```
+
+### 3. Inference
+(1) **Merge checkpoint**
+
+First, you need to merge checkpoint:
+```
+bash merge.sh
+```
+After merging, you will get: `exp/DualSpeechLM/checkpoint-merged-60000.`
+
+(2) **Run inference**
+
+```
+cd inference/bash
+# Perform different tasks using the provided scripts:
+bash infer_asr.sh
+bash infer_tts.sh
+...
 ```
 
 ## Citation
