@@ -165,6 +165,7 @@ bash infer_tts.sh
 
 ## Acknowledgments
 This repository is developed based on the following repos, and we thank them for open-sourcing their great code!
+* [SEED](https://github.com/AILab-CVC/SEED)
 * [SALMONN](https://github.com/bytedance/SALMONN/tree/salmonn)
 * [RepCodec](https://github.com/mct10/RepCodec)
 * [AudioDec](https://github.com/facebookresearch/AudioDec/tree/main)
