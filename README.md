@@ -46,7 +46,7 @@ pip install -r requirements.txt
 (1) Configure your settings in configs/config.yaml.
 
 (2) Prepare the required public checkpoints: `Llama` and `Whisper`.  
-For example, you can download [whisper-medium](https://huggingface.co/openai/whisper-medium) and [llama](https://huggingface.co/meta-llama/Llama-3.2-3B).
+For example, you can download [whisper-medium](https://huggingface.co/openai/whisper-medium).
 After that, you need to modify the `llama_path` and `whisper_path` in configs/config.yaml
 
 (3) **Prepare Training/Dev/Test Dataset**
@@ -93,7 +93,7 @@ pip install -r requirements.txt
 ### 2. Training the SpeechLM
 (1) **Prepare Text LLM**
 
-Download [Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct) as the text backbone, and place it in:
+You need to download Pretrained Text LLM (e.g., [Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct) ) as the text backbone, and place it in:
 ```
 checkpoint/microsoft/Phi-3.5-mini-instruct
 ```
@@ -138,7 +138,7 @@ First, you need to merge checkpoint:
 ```
 bash merge.sh
 ```
-After merging, you will get: `exp/DualSpeechLM/checkpoint-merged-60000.`
+After merging, you will get: `exp/DualSpeechLM/checkpoint-merged-xxx.`
 
 (2) **Run inference**
 
